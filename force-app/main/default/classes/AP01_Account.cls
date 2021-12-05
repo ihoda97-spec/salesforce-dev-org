@@ -10,6 +10,7 @@ public with sharing class AP01_Account {
     @future(callout=true)
     public static void getEnterpriseInformation(String newAccountsString){
         try{
+            system.debug('inside getEnterpriseInformation method');
             List<Account> accountList = (List<Account>)Json.deserialize(newAccountsString,List<Account>.class);
             List<Account> oldAccountList= new List<Account>();
             Id enterpriseRecordTypeId= Schema.SObjectType.Account.getRecordTypeInfosByName().get(System.label.EnterpriseAccountType).getRecordTypeId();

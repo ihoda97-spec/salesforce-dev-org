@@ -1,0 +1,81 @@
+<template>
+  <template if:true={recordId}>
+        <c-filter-products onvaluecheck={displayProducts} onclear={clearFilter}></c-filter-products>
+    <lightning-card title="Available Vehicles" icon-name="standard:product">
+        <!-- <div class="slds-var-m-around_medium">
+            <template if:true={visibleProducts}>
+                <template for:each={visibleProducts} for:item="product">
+                    <p key={product.Id}>{product.Name}</p>
+                </template>
+            </template>
+        </div> -->
+        <!-- <lightning-datatable 
+            data={visibleProducts} 
+            columns={columns} 
+            key-field="id"
+            selected-rows={preSelectedRows}
+            ></lightning-datatable> -->
+        <table
+            class="
+              slds-table
+              slds-table_cell-buffer
+              slds-table_bordered
+              slds-table_col-bordered
+            "
+            border="1"
+            width="100%"
+          >
+            <thead>
+              <tr class="slds-line-height_reset">
+                <td style="text-align:center">
+                  <lightning-input
+                    type="checkbox"
+                    onchange={handleAllProductsSelected}
+                    value={headerSelected}
+                  ></lightning-input>
+                </td>
+                <td style="font-weight: bold; text-align: center">Vehicle Name</td>
+                <td style="font-weight: bold;  text-align: center">Make</td>
+                <td style="font-weight: bold;  text-align: center">Color</td>
+                <td style="font-weight: bold;  text-align: center">Year</td>  
+                <td style="font-weight: bold;  text-align: center">Passenger Seats</td>
+                <td style="font-weight: bold;  text-align: center">Unit Price</td>
+                <td style="font-weight: bold;  text-align: center">Rent Price</td>
+              </tr>
+            </thead>
+            <template if:true={visibleProducts}>
+                <template for:each={visibleProducts} for:item="product">
+                <tr key={product.Id} class="slds-hint-parent trBody">
+                    <td style="text-align:center">
+                    <lightning-input
+                        type="checkbox"
+                        checked={product.IsSelected}
+                        onchange={handleProductSelected}
+                        value={product.VisibleProductIndex}
+                        name={product.Index}
+                    ></lightning-input>
+                    </td>
+                    <td style="text-align:center">{product.Name}</td>
+                    <td style="text-align:center">{product.Family}</td>
+                    <td style="text-align:center">{product.Color}</td>
+                    <td style="text-align:center">{product.YearModel}</td>
+                    <td style="text-align:center">{product.NumberOfPeople}</td>
+                    <td style="text-align:center">{product.ListPrice}</td>
+                    <td style="text-align:center"> 
+                      <lightning-input style="text-align:center" type="number" class="rentPrice" name={product.Index}  value={product.UnitPrice} placeholder="Enter a price" onchange={handleChange}></lightning-input>
+                    </td>
+                </tr>
+                </template>
+        </template>
+        </table>
+        <footer class="slds-modal__footer">
+            <c-pagination records={totalProducts} onupdate={updateProductsHandler}></c-pagination>
+        </footer>
+        <footer class="slds-modal__footer">
+                
+            <!-- <lightning-button variant="cancel" label="Cancel" title="Primary action with lighter look" onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button> -->
+            <lightning-button variant="addProducts" label="Add Products" title="Primary action" onclick={handleSaveProducts} class="slds-m-left_x-small"></lightning-button>
+        </footer> 
+    </lightning-card>
+  </template>
+</template>

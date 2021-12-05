@@ -1,0 +1,53 @@
+<template>
+    <!-- <div class="slds-modal__container"> -->
+    <lightning-layout>
+        <lightning-layout-item padding="around-small">
+            <lightning-combobox
+            name="vehicle-type"
+            label="Vehicle Type"
+            value={vehicleTypeId}
+            placeholder="Select Vehicle Type"
+            options={retrievedProductTypes}
+            onchange={handleVehicleTypeChange} ></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+
+            <lightning-combobox
+            name="type"
+            label="Make"
+            value={type}
+            placeholder="Select Make"
+            options={relatedProductTypes}
+            onchange={handleTypeChange} ></lightning-combobox>
+        </lightning-layout-item> 
+        <lightning-layout-item padding="around-small">
+
+            <lightning-combobox
+            name="year-model"
+            label="Year"
+            value={year}
+            placeholder="Select Year"
+            options={years}
+            onchange={handleYearChange} ></lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item padding="around-small">
+
+            <lightning-combobox
+            name="color"
+            label="Color"
+            value={color}
+            placeholder="Select Color"
+            options={colors}
+            onchange={handleColorChange} ></lightning-combobox>  
+        </lightning-layout-item> 
+    </lightning-layout>
+    
+            <footer class="slds-modal__footer">
+                
+                <!-- <lightning-button variant="cancel" label="Cancel" title="Primary action with lighter look" onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button> -->
+                <lightning-button variant="clearfilter" label="Clear Filter" title="Primary action" onclick={handleClearFilter} class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="filter" label="Filter" title="Primary action" onclick={handleFilterClick} class="slds-m-left_x-small"></lightning-button>
+                
+            </footer> 
+    <!-- </div> -->
+</template>
